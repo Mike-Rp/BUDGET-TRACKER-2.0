@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Budget Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <button id="menuToggle" class="menu-toggle">
+        <svg class="menu-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+    </button>
+
+    <div class="container">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h1>Budget Tracker</h1>
+                <button id="closeSidebar" class="close-sidebar">×</button>
+            </div>
+            
+            <button id="newBudgetBtn" class="btn-primary btn-full">
+                + New Budget File
+            </button>
+
+            <div class="budget-section">
+                <h2 class="section-title">Your Budget Files</h2>
+                <div id="budgetList" class="budget-list"></div>
+            </div>
+
+            <button id="resetBtn" class="btn-secondary btn-full">
+                Reset All Data
+            </button>
+        </aside>
+
+        <main class="main-content">
+            <div id="welcomeScreen" class="welcome-screen">
+                <h2>Welcome to Budget Tracker</h2>
+                <p>Create a new budget file to get started</p>
+            </div>
+
+            <div id="budgetView" class="budget-view hidden">
+                <div class="card">
+                    <input type="text" id="budgetTitle" placeholder="Budget Title (e.g., October 2025 Budget)" 
+                        class="budget-title-input">
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        <h3>Salary This Month</h3>
+                    </div>
+                    <div class="salary-input-wrapper">
+                        <span class="currency">₱</span>
+                        <input type="number" id="salaryInput" placeholder="0.00" class="salary-input">
+                    </div>
+                    <button id="calculateBalanceBtn" class="btn-primary btn-full">
+                        Calculate Remaining Balance
+                    </button>
+                    <div id="balanceDisplay" class="balance-display hidden">
+                        <div class="balance-row">
+                            <span class="balance-label">Remaining Balance:</span>
+                            <span id="remainingBalance" class="balance-amount">₱0.00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="expenses-header">
+                        <div class="card-header">
+                            <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path>
+                            </svg>
+                            <h3>Expenses</h3>
+                        </div>
+                        <div class="expenses-buttons">
+                            <button id="editExpensesBtn" class="btn-secondary hidden">Edit</button>
+                            <button id="doneExpensesBtn" class="btn-primary hidden">Done</button>
+                            <button id="addExpenseBtn" class="btn-primary">+ Add Expense</button>
+                        </div>
+                    </div>
+
+                    <div id="quickAddButtons" class="quick-add-buttons">
+                        <button onclick="addQuickExpense('ELECTRICITY')" class="btn-quick">ELECTRICITY</button>
+                        <button onclick="addQuickExpense('INTERNET')" class="btn-quick">INTERNET</button>
+                        <button onclick="addQuickExpense('FOOD')" class="btn-quick">FOOD</button>
+                        <button onclick="addQuickExpense('TUITION')" class="btn-quick">TUITION</button>
+                        <button onclick="addQuickExpense('BUDGET')" class="btn-quick">BUDGET</button>
+                    </div>
+
+                    <div id="expensesList" class="expenses-list"></div>
+
+                    <div class="total-section">
+                        <div class="total-row">
+                            <span class="total-label">Total of Expenses:</span>
+                            <span id="totalExpenses" class="total-amount">₱0.00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <button id="deleteBudgetBtn" class="btn-secondary">
+                    Delete This Budget File
+                </button>
+            </div>
+        </main>
+    </div>
+
+    <div id="confirmModal" class="modal hidden" style="display: none;">
+        <div class="modal-content">
+            <h3 class="modal-title" id="modalTitle">Confirm Action</h3>
+            <p class="modal-message" id="modalMessage">Are you sure?</p>
+            <div class="modal-buttons">
+                <button id="modalCancel" class="btn-secondary">Cancel</button>
+                <button id="modalConfirm" class="btn-primary">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
